@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mtg.Card.Tracker.Data;
 
 namespace Mtg.Card.Tracker.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180826191247_AddNameToMagicCard")]
+    partial class AddNameToMagicCard
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -201,19 +203,13 @@ namespace Mtg.Card.Tracker.Data.Migrations
 
                     b.Property<string>("IdentityUserId");
 
-                    b.Property<int>("ManaCost");
-
                     b.Property<string>("MtgUserId");
-
-                    b.Property<int>("MultiverseId");
 
                     b.Property<string>("Name");
 
                     b.Property<int>("Power");
 
                     b.Property<int>("Toughness");
-
-                    b.Property<string>("Type");
 
                     b.HasKey("MagicCardId");
 
