@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mtg.Card.Tracker.Data;
 
 namespace Mtg.Card.Tracker.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180826185758_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -189,9 +191,9 @@ namespace Mtg.Card.Tracker.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Mtg.Card.Tracker.Models.MagicCard", b =>
+            modelBuilder.Entity("Mtg.Card.Tracker.Models.Card", b =>
                 {
-                    b.Property<int>("MagicCardId")
+                    b.Property<int>("CardId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -201,21 +203,13 @@ namespace Mtg.Card.Tracker.Data.Migrations
 
                     b.Property<string>("IdentityUserId");
 
-                    b.Property<int>("ManaCost");
-
                     b.Property<string>("MtgUserId");
-
-                    b.Property<int>("MultiverseId");
-
-                    b.Property<string>("Name");
 
                     b.Property<int>("Power");
 
                     b.Property<int>("Toughness");
 
-                    b.Property<string>("Type");
-
-                    b.HasKey("MagicCardId");
+                    b.HasKey("CardId");
 
                     b.HasIndex("IdentityUserId");
 
@@ -282,14 +276,14 @@ namespace Mtg.Card.Tracker.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Mtg.Card.Tracker.Models.MagicCard", b =>
+            modelBuilder.Entity("Mtg.Card.Tracker.Models.Card", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
                         .WithMany()
                         .HasForeignKey("IdentityUserId");
 
                     b.HasOne("Mtg.Card.Tracker.Models.MtgUser")
-                        .WithMany("MagicCard")
+                        .WithMany("Cards")
                         .HasForeignKey("MtgUserId");
                 });
 #pragma warning restore 612, 618
