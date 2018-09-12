@@ -22,8 +22,8 @@
             <td>
                 @Html.DisplayFor(modelItem => item.IdentityUser.UserName)
             </td>
-            <td>              
-                @*<a asp-action="Details" asp-route-id="@item.IdentityUser.Id">Users Cards</a> |*@
+            <td>
+                <a asp-action="Details" asp-route-id="@item.MagicCardId">Details</a> 
             </td>
         </tr>
         }
