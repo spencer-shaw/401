@@ -25,5 +25,18 @@ namespace Mtg.Card.Tracker.Controllers
             var applicationDbContext = _context.Cards.Include(m => m.IdentityUser);            
             return View(await applicationDbContext.ToListAsync());
         }
+
+
+        public async Task<IActionResult> Details(int? Id)
+        {
+
+            var userId = (from s in _context.Cards // grabs the owner of this card
+                          where s.MagicCardId == Id
+                          select s.IdentityUser.Id).First();
+                      
+            var applicationDbContext1 = _context.Cards.Include(m => m.IdentityUser)
+                .Where(m => m.IdentityUser.Id == userId);
+            return View(await applicationDbContext1.ToListAsync()); // returns all the cards users
+        }
     }
 }
