@@ -1,0 +1,3 @@
+[submodule "Mtg.Card.Tracker/Mtg.Card.Tracker/Scryfall"]
+	path = Mtg.Card.Tracker/Mtg.Card.Tracker/Scryfall
+	url = https://github.com/jdharmon/scryfallapi-csharp.git
