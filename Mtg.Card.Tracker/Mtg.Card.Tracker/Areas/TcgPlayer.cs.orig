@@ -9,26 +9,22 @@ namespace Mtg.Card.Tracker.Areas
     {
         //TODO Consume Api here -Shaw
     }
-
-	public class ImageUris
 <<<<<<< HEAD
 =======
+
+	public class ImageUris
 	{
 		public string small { get; set; }
 		public string normal { get; set; }
->>>>>>> d9a34fe5c4c825a80549542b8f2f3b294f91f28c
 		public string large { get; set; }
 		public string png { get; set; }
 		public string art_crop { get; set; }
 		public string border_crop { get; set; }
 	}
-<<<<<<< HEAD
-=======
 
 	public class Legalities
 	{
 		public string standard { get; set; }
->>>>>>> d9a34fe5c4c825a80549542b8f2f3b294f91f28c
 		public string future { get; set; }
 		public string frontier { get; set; }
 		public string modern { get; set; }
@@ -40,24 +36,18 @@ namespace Mtg.Card.Tracker.Areas
 		public string __invalid_name__1v1 { get; set; }
 		public string duel { get; set; }
 		public string brawl { get; set; }
-<<<<<<< HEAD
-=======
 	}
 
 	public class RelatedUris
 	{
 		public string gatherer { get; set; }
->>>>>>> d9a34fe5c4c825a80549542b8f2f3b294f91f28c
 		public string tcgplayer_decks { get; set; }
 		public string edhrec { get; set; }
 		public string mtgtop8 { get; set; }
 	}
-<<<<<<< HEAD
-=======
 
 	public class PurchaseUris
 	{
->>>>>>> d9a34fe5c4c825a80549542b8f2f3b294f91f28c
 		public string amazon { get; set; }
 		public string ebay { get; set; }
 		public string tcgplayer { get; set; }
@@ -66,10 +56,7 @@ namespace Mtg.Card.Tracker.Areas
 		public string card_kingdom { get; set; }
 		public string mtgo_traders { get; set; }
 		public string coolstuffinc { get; set; }
-<<<<<<< HEAD
-=======
 	}
->>>>>>> d9a34fe5c4c825a80549542b8f2f3b294f91f28c
 
 	public class RootObject
 	{
@@ -122,9 +109,6 @@ namespace Mtg.Card.Tracker.Areas
 		public string eur { get; set; }
 		public RelatedUris related_uris { get; set; }
 		public PurchaseUris purchase_uris { get; set; }
-<<<<<<< HEAD
-    }
-=======
 	}
->>>>>>> d9a34fe5c4c825a80549542b8f2f3b294f91f28c
+>>>>>>> parent of 7dddcf1... Added ScryfallAPI
 }
