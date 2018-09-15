@@ -7,8 +7,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Mtg.Card.Tracker.Areas.WebServices;
 using Mtg.Card.Tracker.Data;
 using Mtg.Card.Tracker.Models;
+
 
 namespace Mtg.Card.Tracker.Controllers
 {
@@ -74,6 +76,19 @@ namespace Mtg.Card.Tracker.Controllers
             }
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", magicCard.IdentityUserId);
             return View(magicCard);
+        }
+
+        public JsonResult CardLookup()
+        {
+            var scrFall = new ScryFall();
+            var card = scrFall.GetCards("Goblin Guide");
+            var magicCard = new MagicCard();
+         {
+                magicCard.Name = card.name;
+             
+         };
+
+            return Json(magicCard.Name);
         }
 
         // GET: MagicCards/Edit/5

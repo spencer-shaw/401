@@ -60,6 +60,8 @@
     </div>
 </div>
 
+<button id="CardButton" onclick="getCard()" type="button" class="btn btn-primary">Get Card Info</button>
+
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
@@ -67,3 +69,24 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+<script>
+
+    function getCard() {
+        alert("What the fuck");
+        $.ajax({
+            url: '/MagicCards/CardLookup',
+            type: 'GET',
+            success: function (html) {
+                alert(html);
+            },
+            error: function (error) {
+                $(that).remove();
+                DisplayError(error.statusText);
+            }
+        });
+    }
+
+   
+       
+</script>
