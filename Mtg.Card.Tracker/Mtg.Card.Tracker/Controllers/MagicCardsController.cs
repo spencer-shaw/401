@@ -78,10 +78,10 @@ namespace Mtg.Card.Tracker.Controllers
             return View(magicCard);
         }
 
-        public JsonResult CardLookup()
+        public JsonResult CardLookup(string name)
         {
             var scrFall = new ScryFall();
-            var card = scrFall.GetCards("Goblin Guide");
+            var card = scrFall.GetCards(name);
             var magicCard = new MagicCard();
          {
                 magicCard.Name = card.name;

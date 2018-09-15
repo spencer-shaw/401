@@ -73,9 +73,10 @@
 <script>
 
     function getCard() {
-        alert("What the fuck");
+        
         $.ajax({
             url: '/MagicCards/CardLookup',
+            data: { 'name' : "Goblin Guide"},
             type: 'GET',
             success: function (html) {
                 alert(html);
