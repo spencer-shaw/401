@@ -7,7 +7,8 @@
     </style>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Mtg.Card.Tracker</title>
+    <title>@ViewData["Title"] - Mtg.Card.Tracker </title>
+
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -21,6 +22,7 @@
     </environment>
 </head>
 <body style=" background: url(/images/magicbackground.png);">
+
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -52,14 +54,16 @@
     </nav>
 
     <partial name="_CookieConsentPartial" />
-
+    
     <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2018 - Mtg.Card.Tracker</p>
-        </footer>
-    </div>
+        <span style="COLOR: white">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; 2018 - Mtg.Card.Tracker</p>
+            </footer>
+        </span>
+</div>
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -83,5 +87,6 @@
     </environment>
 
     @RenderSection("Scripts", required: false)
+    
 </body>
 </html>
