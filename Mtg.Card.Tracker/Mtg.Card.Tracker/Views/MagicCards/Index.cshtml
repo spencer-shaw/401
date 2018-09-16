@@ -13,37 +13,38 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
+            <th width="5%">
                 @Html.DisplayNameFor(model => model.Name)
             </th>
-            <th>
+            <th width="5%">
                 @Html.DisplayNameFor(model => model.Color)
             </th>
-            <th>
+            <th width="5%">
                 @Html.DisplayNameFor(model => model.Power)
             </th>
-            <th>
+            <th width="5%">
                 @Html.DisplayNameFor(model => model.Toughness)
             </th>
-            <th>
+            <th width="5%">
                 @Html.DisplayNameFor(model => model.Description)
             </th>
-            <th>
+            <th width="5%">
                 @Html.DisplayNameFor(model => model.Type)
             </th>
-            <th>
+            <th width="5%">
                 @Html.DisplayNameFor(model => model.ManaCost)
             </th>
-            <th>
+            <th width="5%">
                 @Html.DisplayNameFor(model => model.MultiverseId)
-            </th>          
+            </th>
+            
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+            <td width="5%">
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
@@ -67,7 +68,8 @@
             <td>
                 @Html.DisplayFor(modelItem => item.MultiverseId)
             </td>            
-            <td>
+            <td >
+            <td >
                 <a asp-action="Edit" asp-route-id="@item.MagicCardId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.MagicCardId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.MagicCardId">Delete</a>
