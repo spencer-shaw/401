@@ -15,16 +15,6 @@ namespace Mtg.Card.Tracker.Areas.WebServices
             var repositories = ProcessRepositories(cardName);
             var data = JsonConvert.DeserializeObject<RootObject>(repositories);
 
-
-            Console.WriteLine(data.colors);
-            Console.WriteLine(data.name);
-            Console.WriteLine(data.colors);
-            Console.WriteLine(data.set);
-            Console.WriteLine(data.id);
-            Console.WriteLine(data.prints_search_uri);
-            Console.WriteLine();
-
-            var temp = 1;
             return data;
         }
 

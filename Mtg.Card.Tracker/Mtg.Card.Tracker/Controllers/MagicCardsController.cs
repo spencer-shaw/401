@@ -82,13 +82,14 @@ namespace Mtg.Card.Tracker.Controllers
         {
             var scrFall = new ScryFall();
             var card = scrFall.GetCards(name);
-            var magicCard = new MagicCard();
-         {
-                magicCard.Name = card.name;
+         //   var magicCard = new MagicCard();
+         //{
+         //       magicCard.Name = card.name;
+         //       magicCard.ManaCost = card.mana_cost;
              
-         };
+         //};
 
-            return Json(magicCard.Name);
+            return Json(card);
         }
 
         // GET: MagicCards/Edit/5
