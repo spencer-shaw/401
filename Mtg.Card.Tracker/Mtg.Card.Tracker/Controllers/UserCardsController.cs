@@ -19,10 +19,9 @@ namespace Mtg.Card.Tracker.Controllers
         }
 
         public async Task<IActionResult> Index()
-        {
-
-            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var applicationDbContext = _context.Cards.Include(m => m.IdentityUser);            
+        {         
+            var applicationDbContext = _context.Cards.Include(m => m.IdentityUser).
+                GroupBy(x => x.IdentityUserId).Select(y => y.First()); 
             return View(await applicationDbContext.ToListAsync());
         }
 
