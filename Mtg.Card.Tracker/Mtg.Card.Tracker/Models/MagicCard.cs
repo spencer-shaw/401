@@ -15,9 +15,10 @@ namespace Mtg.Card.Tracker.Models
         public int? Toughness { get; set; }
         public string Description { get; set; }
         public string Type { get; set; }
-        public int ManaCost { get; set; }
-        public int MultiverseId { get; set; }
+        public int? ManaCost { get; set; }
+        public int? MultiverseId { get; set; }
         public string IdentityUserId { get; set; }           //Forgien Key to Identity User
+        public string ImageUrl { get; set; }
         public virtual IdentityUser IdentityUser { get; set; }
     }
 }

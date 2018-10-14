@@ -64,7 +64,7 @@ namespace Mtg.Card.Tracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MagicCardId,Name,Color,Power,Toughness,Description,Type,ManaCost,MultiverseId,IdentityUserId")] MagicCard magicCard)
+        public async Task<IActionResult> Create([Bind("MagicCardId,Name,Color,Power,Toughness,Description,Type,ManaCost,MultiverseId,IdentityUserId,ImageUrl")] MagicCard magicCard)
         {
             if (ModelState.IsValid)
             {
@@ -88,6 +88,7 @@ namespace Mtg.Card.Tracker.Controllers
             //       magicCard.ManaCost = card.mana_cost;
 
             //};
+            var description = card.oracle_text;
             var image = card.image_uris.small;
             return Json(card);
         }
