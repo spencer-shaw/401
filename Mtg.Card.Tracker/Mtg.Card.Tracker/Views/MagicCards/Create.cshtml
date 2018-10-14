@@ -11,6 +11,9 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
+        <div >
+            <img id="cardImage" src="" alt="mtg">
+        </div>
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -86,6 +89,7 @@
             success: function (html) {
                 alert("Name: " + html.name + "       Color(s): " + html.colors +
                     "       Mana Cost: " + html.mana_cost + "       Price(in usd): " + html.usd + "      Multiverse Id: " + html.multiverse_ids);
+                $("#cardImage").attr("src", html.image_uris.small);
             },
             error: function (error) {
                 $(that).remove();
