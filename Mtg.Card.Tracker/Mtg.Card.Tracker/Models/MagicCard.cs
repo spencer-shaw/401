@@ -20,5 +20,6 @@ namespace Mtg.Card.Tracker.Models
         public string IdentityUserId { get; set; }           //Forgien Key to Identity User
         public string ImageUrl { get; set; }
         public virtual IdentityUser IdentityUser { get; set; }
+        public int CardsAmount { get; set; }  // Amount of certain card
     }
 }

@@ -64,14 +64,47 @@ namespace Mtg.Card.Tracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MagicCardId,Name,Color,Power,Toughness,Description,Type,ManaCost,MultiverseId,IdentityUserId,ImageUrl")] MagicCard magicCard)
+        public async Task<IActionResult> Create([Bind("MagicCardId,Name,Color,Power,Toughness,Description,Type,ManaCost,MultiverseId,IdentityUserId,ImageUrl,CardAmount")] MagicCard magicCard)
         {
             if (ModelState.IsValid)
             {
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                magicCard.IdentityUserId = userId;
-                _context.Add(magicCard);
-                await _context.SaveChangesAsync();
+
+                var query = (from c in _context.Cards
+                             where c.ImageUrl == magicCard.ImageUrl && c.IdentityUserId == userId
+                             select new { c.CardsAmount, c.MagicCardId }).FirstOrDefault();
+                if(query == null)
+                {
+                    magicCard.IdentityUserId = userId;
+                    magicCard.CardsAmount = magicCard.CardsAmount + 1;
+                    _context.Add(magicCard);
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    
+                    var card = await _context.Cards.FindAsync(query.MagicCardId);
+                    card.CardsAmount = card.CardsAmount + 1;
+                    try
+                    {
+                        _context.Update(card);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!MagicCardExists(magicCard.MagicCardId))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+
+
+                }
+               
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", magicCard.IdentityUserId);
