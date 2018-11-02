@@ -19,27 +19,30 @@
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CardsAmount)
+            </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.Color)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Power)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Toughness)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ManaCost)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MultiverseId)
-            </th>*@
+            @Html.DisplayNameFor(model => model.Color)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Power)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Toughness)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ManaCost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MultiverseId)
+        </th>*@
             <th></th>
         </tr>
     </thead>
@@ -47,33 +50,36 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-               @* @Html.DisplayFor(modelItem => item.ImageUrl)*@
+                @* @Html.DisplayFor(modelItem => item.ImageUrl)*@
                 <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" alt="mtg">
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CardsAmount)
+            </td>
             @*<td>
-                @Html.DisplayFor(modelItem => item.Color)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Power)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Toughness)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ManaCost)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MultiverseId)
-            </td>*@
+            @Html.DisplayFor(modelItem => item.Color)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Power)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Toughness)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ManaCost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MultiverseId)
+        </td>*@
             <td>
                 @*<a asp-action="Edit" asp-route-id="@item.MagicCardId">Edit</a> |
             <a asp-action="Details" asp-route-id="@item.MagicCardId">Details</a> |
