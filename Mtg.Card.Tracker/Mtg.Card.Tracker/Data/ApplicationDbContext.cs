@@ -15,7 +15,7 @@ namespace Mtg.Card.Tracker.Data
         {
         }
 
-        public DbSet<MagicCard> Cards { get; set; }
+        public DbSet<MagicCard> MagicCards { get; set; }
 
         public DbSet<MtgUser> MtgUsers { get; set; }
     }

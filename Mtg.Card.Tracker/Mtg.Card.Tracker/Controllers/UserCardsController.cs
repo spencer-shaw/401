@@ -20,7 +20,7 @@ namespace Mtg.Card.Tracker.Controllers
 
         public async Task<IActionResult> Index()
         {         
-            var applicationDbContext = _context.Cards.Include(m => m.IdentityUser).
+            var applicationDbContext = _context.MagicCards.Include(m => m.IdentityUser).
                 GroupBy(x => x.IdentityUserId).Select(y => y.First()); 
             return View(await applicationDbContext.ToListAsync());
         }
@@ -29,11 +29,11 @@ namespace Mtg.Card.Tracker.Controllers
         public async Task<IActionResult> Details(int? Id)
         {
 
-            var userId = (from s in _context.Cards // grabs the owner of this card
+            var userId = (from s in _context.MagicCards // grabs the owner of this card
                           where s.MagicCardId == Id
                           select s.IdentityUser.Id).First();
                       
-            var applicationDbContext1 = _context.Cards.Include(m => m.IdentityUser)
+            var applicationDbContext1 = _context.MagicCards.Include(m => m.IdentityUser)
                 .Where(m => m.IdentityUser.Id == userId);
             return View(await applicationDbContext1.ToListAsync()); // returns all the cards users
         }

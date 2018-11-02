@@ -28,7 +28,7 @@ namespace Mtg.Card.Tracker.Controllers
         public async Task<IActionResult> Index()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var applicationDbContext = _context.Cards.Include(m => m.IdentityUser)
+            var applicationDbContext = _context.MagicCards.Include(m => m.IdentityUser)
                 .Where(m => m.IdentityUser.Id == userId);
             return View(await applicationDbContext.ToListAsync());
         }
@@ -41,7 +41,7 @@ namespace Mtg.Card.Tracker.Controllers
                 return NotFound();
             }
 
-            var magicCard = await _context.Cards
+            var magicCard = await _context.MagicCards
                 .Include(m => m.IdentityUser)
                 .FirstOrDefaultAsync(m => m.MagicCardId == id);
             if (magicCard == null)
@@ -70,7 +70,7 @@ namespace Mtg.Card.Tracker.Controllers
             {
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-                var query = (from c in _context.Cards
+                var query = (from c in _context.MagicCards
                              where c.ImageUrl == magicCard.ImageUrl && c.IdentityUserId == userId
                              select new { c.CardsAmount, c.MagicCardId }).FirstOrDefault();
                 if(query == null)
@@ -83,7 +83,7 @@ namespace Mtg.Card.Tracker.Controllers
                 else
                 {
                     
-                    var card = await _context.Cards.FindAsync(query.MagicCardId);
+                    var card = await _context.MagicCards.FindAsync(query.MagicCardId);
                     card.CardsAmount = card.CardsAmount + 1;
                     try
                     {
@@ -134,7 +134,7 @@ namespace Mtg.Card.Tracker.Controllers
                 return NotFound();
             }
 
-            var magicCard = await _context.Cards.FindAsync(id);
+            var magicCard = await _context.MagicCards.FindAsync(id);
             if (magicCard == null)
             {
                 return NotFound();
@@ -187,7 +187,7 @@ namespace Mtg.Card.Tracker.Controllers
                 return NotFound();
             }
 
-            var magicCard = await _context.Cards
+            var magicCard = await _context.MagicCards
                 .Include(m => m.IdentityUser)
                 .FirstOrDefaultAsync(m => m.MagicCardId == id);
             if (magicCard == null)
@@ -203,15 +203,15 @@ namespace Mtg.Card.Tracker.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var magicCard = await _context.Cards.FindAsync(id);
-            _context.Cards.Remove(magicCard);
+            var magicCard = await _context.MagicCards.FindAsync(id);
+            _context.MagicCards.Remove(magicCard);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool MagicCardExists(int id)
         {
-            return _context.Cards.Any(e => e.MagicCardId == id);
+            return _context.MagicCards.Any(e => e.MagicCardId == id);
         }
     }
 }
