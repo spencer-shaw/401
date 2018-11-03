@@ -13,5 +13,6 @@ namespace Mtg.Card.Tracker.Models
         [PersonalData]
         public string LastName { get; set; }
         public ICollection<MagicCard> MagicCard { get; set; }
+        public ICollection<TradeOffer> TradeOffer { get; set; }
     }
 }

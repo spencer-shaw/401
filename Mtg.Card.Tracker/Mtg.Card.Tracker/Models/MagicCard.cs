@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,5 +22,12 @@ namespace Mtg.Card.Tracker.Models
         public string ImageUrl { get; set; }
         public virtual IdentityUser IdentityUser { get; set; }
         public int CardsAmount { get; set; }  // Amount of certain card
+      
+        [InverseProperty("CardOffer")]
+        public TradeOffer CardOffers { get; set; }
+        [InverseProperty("CardRequest")]
+        public TradeOffer CardRequests { get; set; }
+
+
     }
 }

@@ -59,6 +59,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CardsAmount)
             </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.MagicCardId)
+            </td>
             @*<td>
             @Html.DisplayFor(modelItem => item.Color)
         </td>
@@ -83,7 +86,9 @@
             <td>
                 @*<a asp-action="Edit" asp-route-id="@item.MagicCardId">Edit</a> |
             <a asp-action="Details" asp-route-id="@item.MagicCardId">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.MagicCardId">Delete</a>*@
+            <a asp-action="Delete" asp-route-id="@item.MagicCardId">Delete</a>*@           
+                <a asp-action="TradeOffer" asp-route-id="@item.MagicCardId">Offer A Trade!</a>
+                
             </td>
         </tr>
 }
