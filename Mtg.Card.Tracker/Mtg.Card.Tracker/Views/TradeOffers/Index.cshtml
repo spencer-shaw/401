@@ -14,10 +14,10 @@
         <tr>
             @*<th>
                 @Html.DisplayNameFor(model => model.IdentityUser)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Accept)
             </th>*@
+            <th hidden>
+                @Html.DisplayNameFor(model => model.TradeOfferId)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.CardOffer)
             </th>
@@ -31,11 +31,11 @@
 @foreach (var item in Model) {
         <tr>
             @*<td>
-                @Html.DisplayFor(modelItem => item.IdentityUser.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Accept)
-            </td>*@
+            @Html.DisplayFor(modelItem => item.IdentityUser.Id)
+        </td>*@
+        @*<td hidden>
+            @Html.DisplayFor(modelItem => item.TradeOfferId)
+        </td>*@
             <td>
                 <img src="@Html.DisplayFor(modelItem => item.CardOffer.ImageUrl)" alt="mtg">
             </td>
@@ -43,19 +43,18 @@
                 <img src="@Html.DisplayFor(modelItem => item.CardRequest.ImageUrl)" alt="mtg">
             </td>
             <td>
-                @*<a asp-action="Edit" asp-route-id="@item.TradeOfferId">Edit</a> |
-        <a asp-action="Details" asp-route-id="@item.TradeOfferId">Details</a> |
-        <a asp-action="Delete" asp-route-id="@item.TradeOfferId">Delete</a>*@
-                <form asp-action="Accept">
-                    <div class="form-group">
-                        <input type="submit" value="Accept Trade" class="btn btn-default" />
-                    </div>
-                </form>
-                <form asp-action="Deny Trade">
-                    <div class="form-group">
-                        <input type="submit" value="Deny Trade" class="btn btn-default" />
-                    </div>
-                </form>
+                @using (Html.BeginForm("Accept", "TradeOffers"))
+                {
+                    <input type="hidden" name="TradeOfferId" value="@item.TradeOfferId" />
+                    <input type="submit" value="Accept" class="btn btn-primary" />
+                }
+            </td>
+            <td>
+                @using (Html.BeginForm("Deny", "TradeOffers"))
+                {
+                    <input type="hidden" name="TradeOfferId" value="@item.TradeOfferId" />
+                    <input type="submit" value="Deny" class="btn btn-danger" />
+                }
             </td>
         </tr>
 }

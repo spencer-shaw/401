@@ -43,6 +43,23 @@ namespace Mtg.Card.Tracker.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
+        public async Task<IActionResult> Accept(int TradeOfferId)
+        {
+            var tradeOfferTemp = await _context.TradeOffers.FindAsync(TradeOfferId);
+
+            //_context.TradeOffers.Remove(tradeOffer);
+            //await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Deny(int id)
+        {
+            var tradeOffer = await _context.TradeOffers.FindAsync(id);
+
+            //_context.TradeOffers.Remove(tradeOffer);
+            //await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
         // GET: TradeOffers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
