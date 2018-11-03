@@ -1,0 +1,65 @@
+﻿@model Mtg.Card.Tracker.Models.MagicCard
+@{
+    ViewData["Title"] = "Offer A Trade!";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Trade Offer</h2>
+
+<div>
+    <h4>MagicCard</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Details" asp-route-id="@Model.MagicCardId">Back</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+<form >
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group" >
+        <label asp-for="MagicCardId" class="control-label"></label>
+        <input asp-for="MagicCardId" id="cardName" class="form-control" />
+        <span asp-validation-for="MagicCardId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="MagicCardId" class="control-label"></label>
+        <input asp-for="MagicCardId" id="cardImageSave" class="form-control" />
+        <span asp-validation-for="MagicCardId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <button id="CardButton" onclick="requestTrade()" type="button" class="btn btn-primary">Request Trade</button>
+    </div>
+</form>
+
+
+<script>
+
+    function requestTrade() {
+        var requestId = document.getElementById("cardName").value;
+        $.ajax({
+            url: '/UserCards/RequestTrade',
+            data: { 'requestId': requestId,'offerId':1},
+            type: 'GET',
+            success: function (html) {
+                alert("It works");
+                //$("#cardImage").attr("src", html.image_uris.normal);
+                //$("#cardImageSave").val(html.image_uris.normal);
+            },
+            error: function (error) {
+                $(that).remove();
+                DisplayError(error.statusText);
+            }
+        });
+    }
+
+
+
+</script>

@@ -62,33 +62,12 @@
             <td hidden>
                 @Html.DisplayFor(modelItem => item.MagicCardId)
             </td>
-            @*<td>
-            @Html.DisplayFor(modelItem => item.Color)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Power)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Toughness)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Type)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ManaCost)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MultiverseId)
-        </td>*@
+          
             <td>
                 @*<a asp-action="Edit" asp-route-id="@item.MagicCardId">Edit</a> |
             <a asp-action="Details" asp-route-id="@item.MagicCardId">Details</a> |
             <a asp-action="Delete" asp-route-id="@item.MagicCardId">Delete</a>*@           
-                <a asp-action="TradeOffer" asp-route-id="@item.MagicCardId">Offer A Trade!</a>
-                
+                <a asp-action="TradeOffer" asp-route-id="@item.MagicCardId">Offer A Trade!</a>               
             </td>
         </tr>
 }
