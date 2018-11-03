@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Mtg.Card.Tracker.Models.TradeOffer>
+
+@{
+    ViewData["Title"] = "PendingTradeOffers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>PendingTradeOffers</h2>
+
+<p>
+    <a asp-action="Index">Trades Being Offered to You </a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            @*<th>
+                @Html.DisplayNameFor(model => model.IdentityUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Accept)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.CardRequest)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CardOffer)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.IdentityUser.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Accept)
+                </td>*@
+                <td>
+                    <img src="@Html.DisplayFor(modelItem => item.CardOffer.ImageUrl)" alt="mtg">
+                </td>
+                <td>
+                    <img src="@Html.DisplayFor(modelItem => item.CardRequest.ImageUrl)" alt="mtg">
+                </td>
+                <td>
+                   
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

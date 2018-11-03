@@ -1,0 +1,45 @@
+﻿@model Mtg.Card.Tracker.Models.TradeOffer
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>TradeOffer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdentityUser)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdentityUser.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Accept)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Accept)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CardOffer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CardOffer.MagicCardId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CardRequest)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CardRequest.MagicCardId)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="TradeOfferId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
