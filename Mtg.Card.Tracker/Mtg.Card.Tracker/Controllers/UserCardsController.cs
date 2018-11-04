@@ -40,7 +40,7 @@ namespace Mtg.Card.Tracker.Controllers
             return View(await applicationDbContext1.ToListAsync()); // returns all the cards users
         }
 
-        //TODO This logic is right. Just make the view an Ajax call
+        //TODO Return a JSON result
         public async Task<IActionResult> RequestTrade(int requestId, int offerId)
         {
             if (requestId == null)
@@ -64,10 +64,10 @@ namespace Mtg.Card.Tracker.Controllers
                 CardRequestId = magicCard.MagicCardId,
                 CardOfferId = offerId
             };
-                                             
-            _context.Add(query);
+
+             _context.Add(query);
             await _context.SaveChangesAsync();
-            return View();
+            return View("Index");
         }
 
         public async Task<IActionResult> TradeOffer(int? id)
@@ -76,12 +76,14 @@ namespace Mtg.Card.Tracker.Controllers
             {
                 return NotFound();
             }
-
+            
             var magicCard = await _context.MagicCards.FindAsync(id);
             if (magicCard == null)
             {
                 return NotFound();
             }
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewData["MagicCardId"] = new SelectList(_context.MagicCards.Where(c => c.IdentityUserId == userId), "MagicCardId", "Name", magicCard.MagicCardId);
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", magicCard.IdentityUserId);
             return View(magicCard);
         }

@@ -28,7 +28,7 @@ namespace Mtg.Card.Tracker.Controllers
                 .Include(t => t.CardOffer)
                 .Include(t => t.CardRequest)
                 .Include(t => t.IdentityUser)
-                .Where(t => t.CardRequest.IdentityUserId == userId && t.Accept != true);
+                .Where(t => t.CardRequest.IdentityUserId == userId && t.Accept == null);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -39,7 +39,7 @@ namespace Mtg.Card.Tracker.Controllers
                 .Include(t => t.CardOffer)
                 .Include(t => t.CardRequest)
                 .Include(t => t.IdentityUser)
-                .Where(t => t.CardOffer.IdentityUserId == userId && t.Accept !=true);
+                .Where(t => t.CardOffer.IdentityUserId == userId && t.Accept ==null);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -60,9 +60,9 @@ namespace Mtg.Card.Tracker.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> Deny(int id)
+        public async Task<IActionResult> Deny(int TradeOfferId)
         {
-            var tradeOffer = await _context.TradeOffers.FindAsync(id);
+            var tradeOffer = await _context.TradeOffers.FindAsync(TradeOfferId);
             tradeOffer.Accept = false;          
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
