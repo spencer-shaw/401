@@ -28,7 +28,7 @@ namespace Mtg.Card.Tracker.Controllers
                 .Include(t => t.CardOffer)
                 .Include(t => t.CardRequest)
                 .Include(t => t.IdentityUser)
-                .Where(t => t.CardRequest.IdentityUserId == userId);
+                .Where(t => t.CardRequest.IdentityUserId == userId && t.Accept != true);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -39,25 +39,32 @@ namespace Mtg.Card.Tracker.Controllers
                 .Include(t => t.CardOffer)
                 .Include(t => t.CardRequest)
                 .Include(t => t.IdentityUser)
-                .Where(t => t.CardOffer.IdentityUserId == userId);
+                .Where(t => t.CardOffer.IdentityUserId == userId && t.Accept !=true);
             return View(await applicationDbContext.ToListAsync());
         }
 
         public async Task<IActionResult> Accept(int TradeOfferId)
         {
-            var tradeOfferTemp = await _context.TradeOffers.FindAsync(TradeOfferId);
+            var tradeOffer = await _context.TradeOffers.FindAsync(TradeOfferId);
+            tradeOffer.Accept = true;
+            await _context.SaveChangesAsync();
+            var userReceiverId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userOffererId = tradeOffer.IdentityUserId;
 
-            //_context.TradeOffers.Remove(tradeOffer);
-            //await _context.SaveChangesAsync();
+            var offerCard = await _context.MagicCards.FindAsync(tradeOffer.CardOfferId);
+            var requestCard = await _context.MagicCards.FindAsync(tradeOffer.CardRequestId);
+            offerCard.IdentityUserId = userReceiverId;
+            requestCard.IdentityUserId = userOffererId;
+
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         public async Task<IActionResult> Deny(int id)
         {
             var tradeOffer = await _context.TradeOffers.FindAsync(id);
-
-            //_context.TradeOffers.Remove(tradeOffer);
-            //await _context.SaveChangesAsync();
+            tradeOffer.Accept = false;          
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
         // GET: TradeOffers/Details/5
