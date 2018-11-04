@@ -55,7 +55,7 @@ namespace Mtg.Card.Tracker.Controllers
             var requestCard = await _context.MagicCards.FindAsync(tradeOffer.CardRequestId);
             offerCard.IdentityUserId = userReceiverId;
             requestCard.IdentityUserId = userOffererId;
-
+            _context.TradeOffers.Remove(tradeOffer); //removes the trade offer
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -63,7 +63,8 @@ namespace Mtg.Card.Tracker.Controllers
         public async Task<IActionResult> Deny(int TradeOfferId)
         {
             var tradeOffer = await _context.TradeOffers.FindAsync(TradeOfferId);
-            tradeOffer.Accept = false;          
+            tradeOffer.Accept = false;
+            _context.TradeOffers.Remove(tradeOffer); //removes the trade offer
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
