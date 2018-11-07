@@ -64,7 +64,7 @@ namespace Mtg.Card.Tracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MagicCardId,Name,Color,Power,Toughness,Description,Type,ManaCost,MultiverseId,IdentityUserId,ImageUrl,CardAmount")] MagicCard magicCard)
+        public async Task<IActionResult> Create([Bind("MagicCardId,Name,Color,Power,Toughness,Description,Type,ManaCost,MultiverseId,IdentityUserId,ImageUrl,CardAmount,Price")] MagicCard magicCard)
         {
             if (ModelState.IsValid)
             {
@@ -72,7 +72,7 @@ namespace Mtg.Card.Tracker.Controllers
 
                 var query = (from c in _context.MagicCards
                              where c.ImageUrl == magicCard.ImageUrl && c.IdentityUserId == userId
-                             select new { c.CardsAmount, c.MagicCardId }).FirstOrDefault();
+                             select new { c.CardsAmount, c.MagicCardId, c.Price, c.Color }).FirstOrDefault();
                 if(query == null)
                 {
                     magicCard.IdentityUserId = userId;

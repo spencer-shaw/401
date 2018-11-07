@@ -22,6 +22,7 @@ namespace Mtg.Card.Tracker.Models
         public string ImageUrl { get; set; }
         public virtual IdentityUser IdentityUser { get; set; }
         public int CardsAmount { get; set; }  // Amount of certain card
+        public double Price { get; set; }
       
         [InverseProperty("CardOffer")]
         public TradeOffer CardOffers { get; set; }
