@@ -50,13 +50,52 @@ namespace Mtg.Card.Tracker.Controllers
             await _context.SaveChangesAsync();
             var userReceiverId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var userOffererId = tradeOffer.IdentityUserId;
-
             var offerCard = await _context.MagicCards.FindAsync(tradeOffer.CardOfferId);
             var requestCard = await _context.MagicCards.FindAsync(tradeOffer.CardRequestId);
-            offerCard.IdentityUserId = userReceiverId;
-            requestCard.IdentityUserId = userOffererId;
-            _context.TradeOffers.Remove(tradeOffer); //removes the trade offer
-            await _context.SaveChangesAsync();
+
+            if(offerCard.CardsAmount == 1 && requestCard.CardsAmount == 1)
+            {
+                offerCard.IdentityUserId = userReceiverId;
+                requestCard.IdentityUserId = userOffererId;
+                _context.TradeOffers.Remove(tradeOffer); //removes the trade offer
+                await _context.SaveChangesAsync();
+            }
+            else if(offerCard.CardsAmount > 1 && requestCard.CardsAmount > 1)
+            {
+                offerCard.CardsAmount = offerCard.CardsAmount - 1;
+                requestCard.CardsAmount = requestCard.CardsAmount - 1;
+
+                var addedOfferCard = new MagicCard()
+                {
+                    IdentityUserId = userReceiverId,
+                    Name = offerCard.Name,
+                    Color = offerCard.Color,
+                    MultiverseId = offerCard.MultiverseId,
+                    ImageUrl = offerCard.ImageUrl,
+                    CardsAmount = 1
+                };
+                var addedRequestCard = new MagicCard()
+                {
+                    IdentityUserId = userOffererId,
+                    Name = offerCard.Name,
+                    Color = offerCard.Color,
+                    MultiverseId = offerCard.MultiverseId,
+                    ImageUrl = offerCard.ImageUrl,
+                    CardsAmount = 1
+                };
+                _context.MagicCards.Add(addedOfferCard);
+                _context.MagicCards.Add(addedRequestCard);
+                _context.TradeOffers.Remove(tradeOffer); //removes the trade offer
+                await _context.SaveChangesAsync();
+            }
+            else if(offerCard.CardsAmount > 1 && requestCard.CardsAmount == 1)
+            {
+                offerCard.CardsAmount = offerCard.CardsAmount - 1;
+
+                _context.TradeOffers.Remove(tradeOffer); //removes the trade offer
+                await _context.SaveChangesAsync();
+            }
+          
             return RedirectToAction(nameof(Index));
         }
 
