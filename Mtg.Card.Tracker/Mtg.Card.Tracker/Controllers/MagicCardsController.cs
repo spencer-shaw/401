@@ -148,7 +148,7 @@ namespace Mtg.Card.Tracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MagicCardId,Name,Color,Power,Toughness,Description,Type,ManaCost,MultiverseId,IdentityUserId")] MagicCard magicCard)
+        public async Task<IActionResult> Edit(int id, [Bind("MagicCardId,Name,Color,Power,Toughness,Description,Type,ManaCost,MultiverseId,IdentityUserId,ImageUrl,CardsAmount,Price")] MagicCard magicCard)
         {
             if (id != magicCard.MagicCardId)
             {

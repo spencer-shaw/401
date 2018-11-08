@@ -8,7 +8,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>MagicCard</h4>
+    <h4>Magic Cards</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -24,44 +24,27 @@
             @Html.DisplayFor(model => model.Color)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Power)
+            @Html.DisplayNameFor(model => model.CardsAmount)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Power)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Toughness)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Toughness)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ManaCost)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ManaCost)
+            @Html.DisplayFor(model => model.CardsAmount)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.MultiverseId)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.MultiverseId)
-        </dd>
+        </dd>        
         <dt>
-            @Html.DisplayNameFor(model => model.IdentityUser)
+            @Html.DisplayNameFor(model => model.Price)
         </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        
+        <dd>
+            <img src="@Html.DisplayFor(model => model.ImageUrl)" alt="mtg">
+        </dd>
     </dl>
 </div>
 <div>
