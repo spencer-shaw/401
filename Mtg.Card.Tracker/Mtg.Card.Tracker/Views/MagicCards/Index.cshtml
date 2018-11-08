@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>My Collection</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Add a Card!</a>
 </p>
 <table class="table">
     <thead>
@@ -59,9 +59,9 @@
            
             <td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.MagicCardId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MagicCardId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MagicCardId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.MagicCardId">Edit This Card</a> |
+                <a asp-action="Details" asp-route-id="@item.MagicCardId">Card Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MagicCardId">Delete This Card</a>
             </td>
         </tr>
 }
