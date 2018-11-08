@@ -22,27 +22,30 @@
             <th>
                 @Html.DisplayNameFor(model => model.CardsAmount)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
             @*<th>
-                    @Html.DisplayNameFor(model => model.Color)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Power)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Toughness)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Type)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ManaCost)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.MultiverseId)
-                </th>*@
+            @Html.DisplayNameFor(model => model.Color)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Power)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Toughness)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ManaCost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MultiverseId)
+        </th>*@
             <th></th>
         </tr>
     </thead>
@@ -62,6 +65,9 @@
                 </td>
                 <td hidden>
                     @Html.DisplayFor(modelItem => item.MagicCardId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
                 </td>
 
                 <td>

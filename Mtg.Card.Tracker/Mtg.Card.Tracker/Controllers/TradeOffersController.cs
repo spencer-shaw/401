@@ -72,15 +72,17 @@ namespace Mtg.Card.Tracker.Controllers
                     Color = offerCard.Color,
                     MultiverseId = offerCard.MultiverseId,
                     ImageUrl = offerCard.ImageUrl,
+                    Price = offerCard.Price,
                     CardsAmount = 1
                 };
                 var addedRequestCard = new MagicCard()
                 {
                     IdentityUserId = userOffererId,
-                    Name = offerCard.Name,
-                    Color = offerCard.Color,
-                    MultiverseId = offerCard.MultiverseId,
-                    ImageUrl = offerCard.ImageUrl,
+                    Name = requestCard.Name,
+                    Color = requestCard.Color,
+                    MultiverseId = requestCard.MultiverseId,
+                    ImageUrl = requestCard.ImageUrl,
+                    Price = requestCard.Price,
                     CardsAmount = 1
                 };
                 _context.MagicCards.Add(addedOfferCard);
@@ -92,10 +94,63 @@ namespace Mtg.Card.Tracker.Controllers
             {
                 offerCard.CardsAmount = offerCard.CardsAmount - 1;
 
+                var addedOfferCard = new MagicCard()
+                {
+                    IdentityUserId = userReceiverId,
+                    Name = offerCard.Name,
+                    Color = offerCard.Color,
+                    MultiverseId = offerCard.MultiverseId,
+                    ImageUrl = offerCard.ImageUrl,
+                    Price = offerCard.Price,
+                    CardsAmount = 1
+                };
+                var addedRequestCard = new MagicCard()
+                {
+                    IdentityUserId = userOffererId,
+                    Name = requestCard.Name,
+                    Color = requestCard.Color,
+                    MultiverseId = requestCard.MultiverseId,
+                    ImageUrl = requestCard.ImageUrl,
+                    Price = requestCard.Price,
+                    CardsAmount = 1
+                };
+                _context.MagicCards.Remove(requestCard);
+                _context.MagicCards.Add(addedOfferCard);
+                _context.MagicCards.Add(addedRequestCard);
                 _context.TradeOffers.Remove(tradeOffer); //removes the trade offer
                 await _context.SaveChangesAsync();
             }
-          
+            else if (offerCard.CardsAmount == 1 && requestCard.CardsAmount > 1)
+            {
+                requestCard.CardsAmount = requestCard.CardsAmount - 1;
+
+                var addedOfferCard = new MagicCard()
+                {
+                    IdentityUserId = userReceiverId,
+                    Name = offerCard.Name,
+                    Color = offerCard.Color,
+                    MultiverseId = offerCard.MultiverseId,
+                    ImageUrl = offerCard.ImageUrl,
+                    Price = offerCard.Price,
+                    CardsAmount = 1
+                };
+                var addedRequestCard = new MagicCard()
+                {
+                    IdentityUserId = userOffererId,
+                    Name = requestCard.Name,
+                    Color = requestCard.Color,
+                    MultiverseId = requestCard.MultiverseId,
+                    ImageUrl = requestCard.ImageUrl,
+                    Price = requestCard.Price,
+                    CardsAmount = 1
+                };
+                _context.MagicCards.Remove(offerCard);
+                _context.MagicCards.Add(addedOfferCard);
+                _context.MagicCards.Add(addedRequestCard);
+                _context.TradeOffers.Remove(tradeOffer); //removes the trade offer
+                await _context.SaveChangesAsync();
+            }
+
             return RedirectToAction(nameof(Index));
         }
 
