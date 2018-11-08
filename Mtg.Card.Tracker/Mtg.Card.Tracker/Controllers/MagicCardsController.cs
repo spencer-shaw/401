@@ -213,5 +213,35 @@ namespace Mtg.Card.Tracker.Controllers
         {
             return _context.MagicCards.Any(e => e.MagicCardId == id);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Sort(string sortType)
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var applicationDbContext = _context.MagicCards.Include(m => m.IdentityUser)
+                .Where(m => m.IdentityUser.Id == userId);
+            if (sortType != null || sortType != "")
+            {
+                if (sortType.Equals("Name"))
+                {
+                    applicationDbContext = _context.MagicCards.Include(m => m.IdentityUser)
+                   .Where(m => m.IdentityUser.Id == userId).OrderBy(o => o.Name);
+                }
+                else if (sortType.Equals("Color"))
+                {
+                    applicationDbContext = _context.MagicCards.Include(m => m.IdentityUser)
+                  .Where(m => m.IdentityUser.Id == userId).OrderBy(o => o.Color);
+                }
+                else if (sortType.Equals("Price"))
+                {
+                    applicationDbContext = _context.MagicCards.Include(m => m.IdentityUser)
+                   .Where(m => m.IdentityUser.Id == userId).OrderBy(o => o.Price);
+                }
+            }
+           
+            return View("Index", await applicationDbContext.ToListAsync());
+        }
     }
 }
