@@ -24,10 +24,10 @@
 </div>
 <form >
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="form-group" >
+    <div class="form-group" hidden>
         <label asp-for="MagicCardId" class="control-label"></label>
         <input asp-for="MagicCardId" id="cardName" class="form-control" />
-        <span asp-validation-for="MagicCardId" class="text-danger"></span>
+        <span asp-validation-for="MagicCardId" class="text-danger" ></span>
     </div>
     <div class="form-group">
         <label asp-for="MagicCardId" class="control-label">Card to Offer</label>
