@@ -33,6 +33,7 @@
             <tr>
                 <th width="5%">
                     @Html.DisplayNameFor(model => model.ImageUrl)
+   
                 </th>
                 <th width="5%">
                     @Html.DisplayNameFor(model => model.Name)
@@ -58,7 +59,7 @@
                 <tr>
                     <td width="5%">
 
-                        <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" alt="mtg">
+                        <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" alt="mtg" height="250" width="200">
                     </td>
                     <td width="5%">
                         @Html.DisplayFor(modelItem => item.Name)
